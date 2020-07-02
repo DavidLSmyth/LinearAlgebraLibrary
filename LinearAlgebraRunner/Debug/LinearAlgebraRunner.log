@@ -1,3 +1,0 @@
-﻿  LinearAlgebraRunner.cpp
-C:\Users\admin\personalSoftwareDev\LinearAlgebra\LinearAlgebraRunner\LinearAlgebraRunner.cpp(28,109): warning C4305: 'argument': truncation from 'double' to 'float'
-  LinearAlgebraRunner.vcxproj -> C:\Users\admin\personalSoftwareDev\LinearAlgebra\LinearAlgebraLibrary\Debug\LinearAlgebraRunner.exe

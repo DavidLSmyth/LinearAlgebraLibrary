@@ -1,8 +1,0 @@
-﻿  LinearAlgebraLibraryTests.cpp
-  TestMatrixFunctions.cpp
-C:\Users\admin\personalSoftwareDev\LinearAlgebra\LinearAlgebraLibraryTests\TestMatrixFunctions.cpp(36,1): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\admin\personalSoftwareDev\LinearAlgebra\LinearAlgebraLibraryTests\TestMatrixFunctions.cpp(37,1): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Generating Code...
-C:\Users\admin\personalSoftwareDev\LinearAlgebra\LinearAlgebraLibraryTests\TestMatrixFunctions.cpp(48,1): warning C4305: 'argument': truncation from 'double' to 'float'
-     Creating library C:\Users\admin\personalSoftwareDev\LinearAlgebra\LinearAlgebraLibrary\Debug\LinearAlgebraLibraryTests.lib and object C:\Users\admin\personalSoftwareDev\LinearAlgebra\LinearAlgebraLibrary\Debug\LinearAlgebraLibraryTests.exp
-  LinearAlgebraLibraryTests.vcxproj -> C:\Users\admin\personalSoftwareDev\LinearAlgebra\LinearAlgebraLibrary\Debug\LinearAlgebraLibraryTests.dll
