@@ -7,12 +7,11 @@
 //using namespace MatrixNamespace;
 int main()
 {
-    std::cout << "Hello World!\n";
 	
 	//const float elements[9] = { 1,1,1,1,2,2,1,2,3 };
 	//Matrix<float> mat_1 = Matrix<float>(3,3,*elements);
-	const float elements[4] = { 1,2,3,8};
-	Matrix<float> mat_1 = Matrix<float>(2,2, *elements);
+	const float elements[9] = { 0,1,0, -8,8,1, 2,-2,0};
+	Matrix<float> mat_1 = Matrix<float>(3,3, *elements);
 	mat_1.print_matrix();
 	std::cout << std::endl;
 	/*
@@ -26,10 +25,12 @@ int main()
 	*/
 
 	MatrixFns::PLUFactorisation<float> factorisation = MatrixFns::MatrixFunctions::getPLUFactors(mat_1, 0.00001);
+	std::cout << "Factorisation results: "<< std::endl;
+	std::cout << "P: " << std::endl;
 	factorisation.P.print_matrix();
-	std::cout << std::endl;
+	std::cout << "L: " << std::endl;
 	factorisation.L.print_matrix();
-	std::cout << std::endl;
+	std::cout << "U: " << std::endl;
 	factorisation.U.print_matrix();
 	Matrix<float> res = factorisation.P * factorisation.L * factorisation.U;
 	std::cout << "Result: " << std::endl;

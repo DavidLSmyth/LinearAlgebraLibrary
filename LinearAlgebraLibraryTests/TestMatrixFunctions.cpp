@@ -14,10 +14,6 @@ namespace LinearAlgebraLibraryTests
 	public:
 
 		
-
-
-
-
 		
 		TEST_METHOD(TestPLUFactorisation)
 		{
@@ -27,7 +23,6 @@ namespace LinearAlgebraLibraryTests
 
 			const float* l_mat_1_elements;
 
-			
 			const float* u_mat_1_elements;
 
 			const float* p_mat_1_elements;
@@ -42,17 +37,31 @@ namespace LinearAlgebraLibraryTests
 			Matrix<float> p_mat_1(2, 2, *p_mat_1_elements);
 			Matrix<float> u_mat_1(2, 2, *u_mat_1_elements);
 
-
-
-			
 			MatrixFns::PLUFactorisation<float> factorisation = MatrixFns::MatrixFunctions::getPLUFactors(mat_1, 0.00001);
 			
 			Assert::IsTrue(factorisation.P == p_mat_1);
 			Assert::IsTrue(factorisation.U == u_mat_1);
 			Assert::IsTrue(factorisation.L == l_mat_1);
-			
 
+			mat_1_elements = new float[9]{ 0,1,0, -8,8,1, 2,-2,0 };
+			l_mat_1_elements = new float[9]{ 1,0,0, 0,1,0, -1/4.0,0,1 };
+			u_mat_1_elements = new float[9]{ -8,8,1, 0,1,0, 0,0,1/4.0};
+			p_mat_1_elements = new float[9]{0,1,0, 1,0,0, 0,0,1 };
+
+			mat_1 = Matrix<float>(3, 3, *mat_1_elements);
+			l_mat_1 = Matrix<float>(3, 3, *l_mat_1_elements);
+			p_mat_1 = Matrix<float>(3, 3, *p_mat_1_elements);
+			u_mat_1 = Matrix<float>(3, 3, *u_mat_1_elements);
+
+			factorisation = MatrixFns::MatrixFunctions::getPLUFactors(mat_1, 0.00001);
+
+			Assert::IsTrue(factorisation.P == p_mat_1);
+			Assert::IsTrue(factorisation.U == u_mat_1);
+			Assert::IsTrue(factorisation.L == l_mat_1);
+			Assert::IsTrue(factorisation.P * factorisation.L * factorisation.U == mat_1);
 		}
+
+
 	};
 
 }

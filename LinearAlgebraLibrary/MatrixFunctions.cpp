@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <stdio.h>
 #include <iostream>
+#include <string>
 
 namespace MatrixFns {
 	//A library of functions that act on matrices
@@ -14,7 +15,7 @@ namespace MatrixFns {
 
 
 	template <typename T>
-	MatrixFns::PLUFactorisation<T> MatrixFunctions::getPLUFactors(const Matrix<T>& B, float epsilon) {
+	MatrixFns::PLUFactorisation<T> MatrixFunctions::getPLUFactors(const Matrix<T>& B, float epsilon, bool verbose) {
 		Matrix<T>& A = const_cast<Matrix<T>&>(B);
 		int no_rows = A.get_no_rows();
 		int no_cols = A.get_no_cols();
@@ -48,7 +49,7 @@ namespace MatrixFns {
 			for (int counter = pivotIndex + 1; counter < A.get_no_rows(); counter++) {
 				//find biggest pivot below rowIndex
 				nextPossiblePivot = U.get_element(counter, pivotIndex);
-				if (nextPossiblePivot > maxPivotValue) {
+				if (abs(nextPossiblePivot) > abs(maxPivotValue)) {
 					//cout << nextPossiblePivot << " > " << maxPivotValue << endl;
 					maxPivotValue = nextPossiblePivot;
 					pivotMaxIndex = counter;
@@ -58,15 +59,17 @@ namespace MatrixFns {
 			if (pivotMaxIndex != pivotIndex) {
 				//update P
 				currentPermutation.identity();
+				std::cout << "Swapping row " << pivotIndex << " with row " << pivotMaxIndex << std::endl;
 				currentPermutation.swap_rows(pivotMaxIndex, pivotIndex);
 				U.swap_rows(pivotMaxIndex, pivotIndex);
 				P = currentPermutation * P;
 
 			}
 
-			if (maxPivotValue < epsilon) {
+			if (abs(maxPivotValue) < epsilon) {
 				//if 0, continue to next
 				//throw(unstablePivot);
+				std::cout << "pivot value unstable: " << maxPivotValue << std::endl;
 				continue;
 				//return MatrixFns::PLUFactorisation<T> { P, L, U };
 			}
@@ -83,8 +86,8 @@ namespace MatrixFns {
 				std::cout << "tempL: " << std::endl;
 				tempL.print_matrix();
 				L = L * tempL;				
-				std::cout << "L: "<< std::endl;
 
+				std::cout << "L: "<< std::endl;
 				L.print_matrix();
 				U = tempU * U;
 				std::cout << "U: " << std::endl;
